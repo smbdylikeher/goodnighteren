@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selamat Malam Eren 🌙</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            color: white;
+        }
+
+        /* Bintang-bintang */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        /* Bulan */
+        .moon {
+            position: fixed;
+            top: 80px;
+            right: 100px;
+            width: 120px;
+            height: 120px;
+            background: #f4f4f4;
+            border-radius: 50%;
+            box-shadow: 0 0 60px rgba(244, 244, 244, 0.5);
+            z-index: 2;
+            animation: moonGlow 4s ease-in-out infinite;
+        }
+
+        .moon::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            width: 20px;
+            height: 20px;
+            background: #d4d4d4;
+            border-radius: 50%;
+        }
+
+        .moon::after {
+            content: '';
+            position: absolute;
+            bottom: 30px;
+            right: 25px;
+            width: 15px;
+            height: 15px;
+            background: #d4d4d4;
+            border-radius: 50%;
+        }
+
+        @keyframes moonGlow {
+            0%, 100% {
+                box-shadow: 0 0 60px rgba(244, 244, 244, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 80px rgba(244, 244, 244, 0.8);
+            }
+        }
+
+        /* Awan malam */
+        .night-clouds {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        .night-cloud {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 100px;
+            animation: floatCloud linear infinite;
+        }
+
+        .night-cloud::before,
+        .night-cloud::after {
+            content: '';
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 100px;
+        }
+
+        .night-cloud1 {
+            width: 100px;
+            height: 40px;
+            top: 150px;
+            left: -100px;
+            animation-duration: 40s;
+        }
+
+        .night-cloud1::before {
+            width: 50px;
+            height: 50px;
+            top: -25px;
+            left: 10px;
+        }
+
+        .night-cloud1::after {
+            width: 60px;
+            height: 40px;
+            top: -15px;
+            right: 10px;
+        }
+
+        @keyframes floatCloud {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(calc(100vw + 200px));
+            }
+        }
+
+        /* Container */
+        .container {
+            position: relative;
+            z-index: 4;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .title {
+            font-size: 3.5em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .subtitle {
+            font-size: 1.5em;
+            color: #a8d8ea;
+            margin-bottom: 40px;
+            font-weight: 300;
+            animation: fadeInDown 1.5s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message-box {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 40px;
+            margin: 30px 0;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .message {
+            font-size: 1.4em;
+            line-height: 1.8;
+            margin: 20px 0;
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        .message:nth-child(1) {
+            animation-delay: 0.5s;
+        }
+
+        .message:nth-child(2) {
+            animation-delay: 1.5s;
+        }
+
+        .message:nth-child(3) {
+            animation-delay: 2.5s;
+        }
+
+        .message:nth-child(4) {
+            animation-delay: 3.5s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .dream-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 18px 50px;
+            font-size: 1.3em;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            margin: 30px 10px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .dream-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+        }
+
+        /* Shooting star */
+        .shooting-star {
+            position: fixed;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 10px white;
+            z-index: 5;
+            animation: shoot 3s linear;
+        }
+
+        @keyframes shoot {
+            0% {
+                transform: translateX(0) translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(-300px) translateY(300px);
+                opacity: 0;
+            }
+        }
+
+        /* Sleep character */
+        .sleep-character {
+            font-size: 100px;
+            margin: 30px 0;
+            animation: sleep 2s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3));
+        }
+
+        @keyframes sleep {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Popup */
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 50px;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            text-align: center;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: transform 0.4s ease;
+        }
+
+        .popup.show {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .popup-text {
+            font-size: 1.6em;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .popup-emoji {
+            font-size: 80px;
+            margin: 20px 0;
+            animation: float 2s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .close-popup {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+            padding: 15px 35px;
+            font-size: 1.1em;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 20px;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .close-popup:hover {
+            background: white;
+            color: #667eea;
+            transform: scale(1.05);
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .overlay.show {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* Music button */
+        .music-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 1.5em;
+            cursor: pointer;
+            z-index: 100;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .music-button:hover {
+            transform: scale(1.1);
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2.2em;
+            }
+
+            .subtitle {
+                font-size: 1.2em;
+            }
+
+            .message {
+                font-size: 1.1em;
+            }
+
+            .moon {
+                top: 50px;
+                right: 30px;
+                width: 80px;
+                height: 80px;
+            }
+
+            .dream-button {
+                font-size: 1.1em;
+                padding: 15px 35px;
+            }
+
+            .popup {
+                width: 90%;
+                padding: 35px 25px;
+            }
+
+            .popup-text {
+                font-size: 1.3em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Bintang-bintang -->
+    <div class="stars" id="starsContainer"></div>
+
+    <!-- Bulan -->
+    <div class="moon"></div>
+
+    <!-- Awan malam -->
+    <div class="night-clouds">
+        <div class="night-cloud night-cloud1"></div>
+    </div>
+
+    <!-- Konten utama -->
+    <div class="container">
+        <h1 class="title">🌙 Selamat Malam, Eren 🌙</h1>
+        <p class="subtitle">Waktunya istirahat setelah hari yang panjang</p>
+        
+        <div class="sleep-character">😴💤</div>
+
+        <div class="message-box">
+            <p class="message">Tidur Yang Nyenyank erennnn🌃</p>
+            <p class="message">Have A Nice Dream ✨</p>
+        </div>
+
+        <button class="dream-button" onclick="showPopup()">Kirim Mimpi Indah ✨</button>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay" onclick="closePopup()"></div>
+
+    <!-- Popup -->
+    <div class="popup" id="popup">
+        <div class="popup-emoji">🌠💫</div>
+        <p class="popup-text">Mimpi indah sudah dikirim ke Eren! 🌙✨</p>
+        <p style="font-size: 1.1em; margin: 15px 0;">Semoga tidurnya nyenyak dan penuh mimpi bahagia!</p>
+        <button class="close-popup" onclick="closePopup()">Terima Kasih 💕</button>
+    </div>
+
+    <!-- Tombol musik -->
+    <button class="music-button" onclick="toggleMusic()" id="musicBtn">🎵</button>
+
+    <!-- Audio (ganti "lagu.mp3" dengan file musik kamu) -->
+    <audio id="bgMusic" loop>
+        <source src="lagu.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // Buat bintang-bintang
+        function createStars() {
+            const starsContainer = document.getElementById('starsContainer');
+            for (let i = 0; i < 200; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                star.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+
+        createStars();
+
+        // Buat bintang jatuh
+        function createShootingStar() {
+            const star = document.createElement('div');
+            star.className = 'shooting-star';
+            star.style.top = Math.random() * 50 + '%';
+            star.style.right = Math.random() * 100 + 'px';
+            document.body.appendChild(star);
+
+            setTimeout(() => {
+                star.remove();
+            }, 3000);
+        }
+
+        // Buat bintang jatuh setiap 5-10 detik
+        setInterval(() => {
+            if (Math.random() > 0.5) {
+                createShootingStar();
+            }
+        }, 5000);
+
+        // Tampilkan popup
+        function showPopup() {
+            document.getElementById('popup').classList.add('show');
+            document.getElementById('overlay').classList.add('show');
+            createSparkles();
+        }
+
+        // Tutup popup
+        function closePopup() {
+            document.getElementById('popup').classList.remove('show');
+            document.getElementById('overlay').classList.remove('show');
+        }
+
+        // Buat efek sparkle
+        function createSparkles() {
+            const colors = ['#fff', '#ffd700', '#a8d8ea', '#aa96da'];
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const sparkle = document.createElement('div');
+                    sparkle.style.position = 'fixed';
+                    sparkle.style.left = '50%';
+                    sparkle.style.top = '50%';
+                    sparkle.style.width = '5px';
+                    sparkle.style.height = '5px';
+                    sparkle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    sparkle.style.borderRadius = '50%';
+                    sparkle.style.zIndex = '1001';
+                    sparkle.style.pointerEvents = 'none';
+                    sparkle.style.boxShadow = '0 0 10px currentColor';
+                    
+                    const angle = (Math.PI * 2 * i) / 30;
+                    const velocity = 100 + Math.random() * 100;
+                    
+                    document.body.appendChild(sparkle);
+                    
+                    let start = null;
+                    function animate(timestamp) {
+                        if (!start) start = timestamp;
+                        const progress = timestamp - start;
+                        
+                        const x = Math.cos(angle) * velocity * (progress / 1000);
+                        const y = Math.sin(angle) * velocity * (progress / 1000) + (progress * progress / 10000);
+                        
+                        sparkle.style.transform = `translate(${x}px, ${y}px)`;
+                        sparkle.style.opacity = 1 - (progress / 1500);
+                        
+                        if (progress < 1500) {
+                            requestAnimationFrame(animate);
+                        } else {
+                            sparkle.remove();
+                        }
+                    }
+                    
+                    requestAnimationFrame(animate);
+                }, i * 20);
+            }
+        }
+
+        // Kontrol musik
+        const music = document.getElementById('bgMusic');
+        let isPlaying = false;
+
+        function toggleMusic() {
+            const btn = document.getElementById('musicBtn');
+            if (isPlaying) {
+                music.pause();
+                btn.innerHTML = '🎵';
+                isPlaying = false;
+            } else {
+                music.play();
+                btn.innerHTML = '🔇';
+                isPlaying = true;
+            }
+        }
+
+        // Auto play musik saat user pertama kali berinteraksi
+        document.addEventListener('click', function autoPlay() {
+            if (!isPlaying) {
+                music.play().then(() => {
+                    isPlaying = true;
+                    document.getElementById('musicBtn').innerHTML = '🔇';
+                }).catch(() => {
+                    console.log('Autoplay diblokir. Klik tombol musik untuk memutar.');
+                });
+            }
+            document.removeEventListener('click', autoPlay);
+        }, { once: true });
+    </script>
+</body>
+</html>
